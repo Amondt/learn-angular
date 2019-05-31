@@ -1,0 +1,16 @@
+<h2>Ninja listing</h2>
+
+<form id="filter">
+    <label>Filter ninjas by name:</label>
+    <input type="text" [(ngModel)]="searchInput" (input)="filterNinjas($event.target.value)" name="filterInput" />
+    <!-- (input)="SearchData($event.target.value) -->
+</form>
+
+<ul id="ninja-listing">
+    <li *ngFor="let ninja of filteredNinjas">
+        <div class="single-ninja">
+            <span [ngStyle]="{ background: ninja.belt }">{{ ninja.belt }}</span>
+            <h3>{{ ninja.name | uppercase }}</h3>
+        </div>
+    </li>
+</ul>
