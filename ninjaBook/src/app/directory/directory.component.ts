@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from '../data.service';
 
 @Component({
     selector: 'app-directory',
@@ -6,24 +7,26 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./directory.component.css']
 })
 export class DirectoryComponent implements OnInit {
-    ninjas = [
-        { name: 'Yoshi', belt: 'black'},
-        { name: 'Ryu', belt: 'red'},
-        { name: 'Crystal', belt: 'purple'},
-    ]
-    filteredNinjas = []
-    searchInput: string
+
+    ninjas
+    filteredNinjas
 
     filterNinjas(value) {
-        console.log(value)
         this.filteredNinjas = this.ninjas.filter(ninja => {
             return ninja.name.toLowerCase().includes(value.toLowerCase())
         })
     }
 
-    constructor() { }
+    constructor(private dataService: DataService) { }
 
     ngOnInit() {
+        this.dataService.getNinjas().subscribe(
+            data => {
+                this.ninjas = data
+                this.filteredNinjas = data
+            },
+            err => console.log(err)
+        )
         this.filteredNinjas = this.ninjas
     }
 

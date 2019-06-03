@@ -2,7 +2,7 @@
 
 <form id="filter">
     <label>Filter ninjas by name:</label>
-    <input type="text" [(ngModel)]="searchInput" (input)="filterNinjas($event.target.value)" name="filterInput" />
+    <input type="text" (input)="filterNinjas($event.target.value)" name="filterInput" />
     <!-- (input)="SearchData($event.target.value) -->
 </form>
 

@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core'
-import { Routes, RouterModule } from '@angular/router'
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
 
 import { HomeComponent } from './home/home.component'
 import { DirectoryComponent } from './directory/directory.component'
@@ -15,6 +15,5 @@ const routes: Routes = [
     imports: [RouterModule.forRoot(routes)],
     exports: [RouterModule]
 })
-
-export class AppRoutingModule {}
-export const RoutingComponents = [ HomeComponent, DirectoryComponent, NotFoundComponent ]
+export class AppRoutingModule { }
+export const RoutingComponents = [HomeComponent, DirectoryComponent, NotFoundComponent]
