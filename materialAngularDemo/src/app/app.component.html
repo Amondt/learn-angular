@@ -1,21 +1,37 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+<div>
+    <mat-button-toggle #toggleBtn checked>Toggle</mat-button-toggle>
+    {{ toggleBtn.checked }}
+
+    <mat-button-toggle-group #toggleGroup="matButtonToggleGroup" multiple>
+        <mat-button-toggle value="Angular">Angular</mat-button-toggle>
+        <mat-button-toggle value="React">React</mat-button-toggle>
+        <mat-button-toggle value="Vue">Vue</mat-button-toggle>
+    </mat-button-toggle-group>
+    {{ toggleGroup.value }}
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+
+<button mat-button color="primary">Hello World</button>
+<button mat-raised-button color="accent">Hello World</button>
+<button mat-flat-button color="primary">Hello World</button>
+<button mat-stroked-button color="warn">Hello World</button>
+
+<button mat-icon-button color="primary">Hey</button>
+<button mat-fab color="primary">Hey</button>
+<button mat-mini-fab color="primary">Hey</button>
+
+<div class="mat-display-4">this is display 4</div>
+<div class="mat-display-3">this is display 3</div>
+<div class="mat-display-2">this is display 2</div>
+<div class="mat-display-1">this is display 1</div>
+
+<div class="mat-headline">this is heading - h1</div>
+<div class="mat-title">this is heading - h2</div>
+<div class="mat-subheading-2">this is heading - h3</div>
+<div class="mat-subheading-1">this is heading - h4</div>
+
+<div class="mat-bosy-2">this is a bold body text</div>
+<div class="mat-body-1">this is a body text</div>
+<div class="mat-caption">this is a caption text</div>
+
 
 <router-outlet></router-outlet>
