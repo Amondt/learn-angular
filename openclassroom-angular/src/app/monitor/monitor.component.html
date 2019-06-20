@@ -1,0 +1,16 @@
+<li 
+    [ngClass]="{'list-group-item': true,
+                'list-group-item-success': monitorStatus === 'On',
+                'list-group-item-danger': monitorStatus === 'Off'}"
+>
+    <div
+    *ngIf="monitorStatus === 'On'"
+    style="width:20px;height:20px;background-color:green;border-radius:3px;"
+    ></div>
+    <div
+        *ngIf="monitorStatus === 'Off'"
+        style="width:20px;height:20px;background-color:red;border-radius:3px;"
+    ></div>
+    <h4 [ngStyle]="{color: getColor()}">Monitor : {{ monitorName }} -- status : {{ getStatus() }}</h4>
+    <input type="text" class="form-control" [(ngModel)]="monitorName">
+</li>
