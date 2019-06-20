@@ -1,0 +1,30 @@
+<li
+    [ngStyle]="post.likes === 0 ? { color: '#555', backgroundColor: '#e5e5e5' }: ''"
+    [ngClass]="{
+        'my-2': true,
+        'list-group-item': true,
+        'list-group-item-success': post.likes > 0,
+        'list-group-item-danger': post.likes < 0
+    }"
+>
+    <small>{{ post.createdAt | date: 'short' }}</small>
+
+    <h4 class="mt-2">{{ post.title }}</h4>
+
+    <p>{{ post.content }}</p>
+
+    <button
+        class="btn btn-success mr-3"
+        (click)="balanceLikes(1)"
+    >Like it</button>
+
+    <button
+        class="btn btn-danger"
+        (click)="balanceLikes(-1)"
+    >Dislike it</button>
+
+    <small 
+        class="delete"
+        (click)="deletePost()"
+    >&#10007;</small>
+</li>
