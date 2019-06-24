@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core'
+import { Subject } from 'rxjs/Subject'
 
 @Injectable({
     providedIn: 'root'
@@ -6,7 +7,9 @@ import { Injectable } from '@angular/core'
 
 export class PostsService {
 
-    posts = [
+    postSubject = new Subject<any[]>()
+
+    private posts = [
         {
             id: 1,
             title: "My first post",
@@ -32,15 +35,22 @@ export class PostsService {
 
     constructor() {}
 
-    getPosts = () => this.posts
+    emitPostSubject() {
+        this.postSubject.next(this.posts.slice())
+    }
 
     balanceLikes = (id, value) => {
         this.posts.forEach(post => {
             if (post.id === id) {
                 post.likes += value
+                console.log('id: ' + post.id + ' -- ' + post.likes + ' likes')
             }
         })
     }
 
-    deletePost = (id) => this.posts = this.posts.filter(post => post.id !== id)
+    deletePost = (id) => {
+        this.posts = this.posts.filter(post => post.id !== id)
+        this.emitPostSubject()
+        console.log(this.posts)
+    }
 }

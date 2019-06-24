@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core'
+import { Observable } from 'rxjs/Observable'
+import 'rxjs/add/observable/interval'
+import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'app-root',
@@ -6,34 +9,21 @@ import { Component } from '@angular/core';
     styleUrls: ['./app.component.scss']
 })
 
-export class AppComponent {
+export class AppComponent implements OnInit, OnDestroy {
 
-    isAuth = false
-    lastUpdate = new Promise((resolve, reject) => {
-        const date = new Date()
-        setTimeout(
-            () => {
-                resolve(date)
-            }, 2000
-        )
-    })
-    // lastUpdate = new Date()
-
-    monitors = [
-        { name: "Monitor 1", status: "Off"},
-        { name: "Monitor 2", status: "On"},
-        { name: "Monitor 3", status: "Off"},
-    ]
-
-    constructor() {
-        setTimeout(
-            () => {
-                this.isAuth = true
-            }, 4000
+    seconds: number
+    counterSubscription: Subscription
+    
+    ngOnInit() {
+        const counter = Observable.interval(1000)
+        this.counterSubscription = counter.subscribe(
+            value => this.seconds = value,
+            error => console.log(error),
+            () => console.log('Observable complete')
         )
     }
 
-    onLightUp = () => {
-        console.log('Lights up everything')
+    ngOnDestroy() {
+        this.counterSubscription.unsubscribe()
     }
 }

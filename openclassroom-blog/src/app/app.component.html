@@ -12,10 +12,8 @@
 
             <ul class="list-group">
                 <app-post 
-                    *ngFor="let post of posts"
+                    *ngFor="let post of posts; let i = index"
                     [post]="post"
-                    (onLikes)="balanceLikes($event)"
-                    (onDelete)="deletePost($event)"
                 ></app-post>
             </ul>
         </div>

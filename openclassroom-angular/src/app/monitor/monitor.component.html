@@ -1,16 +1,29 @@
 <li 
-    [ngClass]="{'list-group-item': true,
-                'list-group-item-success': monitorStatus === 'On',
-                'list-group-item-danger': monitorStatus === 'Off'}"
+    [ngClass]="{
+        'list-group-item': true,
+        'list-group-item-success': monitorStatus === 'On',
+        'list-group-item-danger': monitorStatus === 'Off'
+    }"
 >
-    <div
-    *ngIf="monitorStatus === 'On'"
-    style="width:20px;height:20px;background-color:green;border-radius:3px;"
-    ></div>
-    <div
-        *ngIf="monitorStatus === 'Off'"
-        style="width:20px;height:20px;background-color:red;border-radius:3px;"
-    ></div>
     <h4 [ngStyle]="{color: getColor()}">Monitor : {{ monitorName }} -- status : {{ getStatus() }}</h4>
+
+    <a [routerLink]="[monitorId]">Details</a>
+
     <input type="text" class="form-control" [(ngModel)]="monitorName">
+
+    <button
+        class="btn btn-sm btn-success"
+        *ngIf="monitorStatus === 'Off'"
+        (click)="onSwitch()"
+    >
+        Switch on
+    </button>
+
+    <button
+        class="btn btn-sm btn-danger"
+        *ngIf="monitorStatus === 'On'"
+        (click)="onSwitch()"
+    >
+        Switch off
+    </button>
 </li>

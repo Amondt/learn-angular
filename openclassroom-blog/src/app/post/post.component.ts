@@ -1,4 +1,5 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core'
+import { Component, OnInit, Input } from '@angular/core'
+import { PostsService } from '../posts.service'
 
 @Component({
     selector: 'app-post',
@@ -9,16 +10,15 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core'
 export class PostComponent implements OnInit {
 
     @Input() post: any
-    @Output() onLikes = new EventEmitter()
-    @Output() onDelete = new EventEmitter()
 
-    constructor() { }
+    constructor(private postsService: PostsService) { }
 
     ngOnInit() {
+        console.log('init post component -- ', this.postsService)
     }
 
-    balanceLikes = (balance) => this.onLikes.emit({ balance, id: this.post.id })
+    balanceLikes = (balance) => this.postsService.balanceLikes(this.post.id, balance)
 
-    deletePost = () => this.onDelete.emit(this.post.id)
+    deletePost = () => this.postsService.deletePost(this.post.id)
 
 }

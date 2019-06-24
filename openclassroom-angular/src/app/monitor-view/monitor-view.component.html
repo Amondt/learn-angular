@@ -1,0 +1,29 @@
+<h2>Mes appareils</h2>
+
+<p>Updated: {{ lastUpdate | async | date: 'short' }}</p>
+
+<ul class="list-group">
+    <app-monitor 
+        *ngFor="let monitor of monitors; let i = index"
+        [monitorName]="monitor.name"
+        [monitorStatus]="monitor.status"
+        [monitorId]="monitor.id"
+        [index]="i"
+    ></app-monitor>
+</ul>
+
+<button
+    type="button"
+    class="btn btn-success" 
+    (click)="onSwitchOnAll()"
+>
+    Switch on all
+</button>
+
+<button
+    type="button"
+    class="btn btn-danger" 
+    (click)="onSwitchOffAll()"
+>
+    Switch off all
+</button>
