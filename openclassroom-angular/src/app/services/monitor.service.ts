@@ -10,6 +10,8 @@ export class MonitorService {
         { id: 3, name: "Monitor 3", status: "Off"},
     ]
 
+    private lastId = 3
+
     emitMonitorSubject = () => {
         this.monitorSubject.next(this.monitors.slice())
     }
@@ -36,5 +38,16 @@ export class MonitorService {
 
     getMonitorById = (id: number) => {
         return this.monitors.find(monitor => monitor.id === id)
+    }
+
+    addNewMonitor = (name: string, status: string) => {
+        this.lastId += 1
+        this.monitors.push({
+            id: this.lastId,
+            name,
+            status
+        })
+        console.log(this.monitors)
+        this.emitMonitorSubject()
     }
 }

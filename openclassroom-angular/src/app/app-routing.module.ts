@@ -5,10 +5,12 @@ import { AuthComponent } from './auth/auth.component'
 import { SingleMonitorComponent} from './single-monitor/single-monitor.component'
 import { NotFoundComponent } from './not-found/not-found.component'
 import { AuthGuardService } from './services/auth-guard.service';
+import { CreateMonitorComponent } from './create-monitor/create-monitor.component';
 
 const routes: Routes = [
     { path: 'monitors', canActivate: [AuthGuardService], component: MonitorViewComponent },
     { path: 'monitors/:id', canActivate: [AuthGuardService], component: SingleMonitorComponent },
+    { path: 'create', canActivate: [AuthGuardService], component: CreateMonitorComponent },
     { path: 'auth', component: AuthComponent },
     { path: '', component: MonitorViewComponent },
     { path: 'not-found', component: NotFoundComponent },

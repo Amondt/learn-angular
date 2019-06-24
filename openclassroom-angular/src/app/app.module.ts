@@ -11,6 +11,7 @@ import { MonitorViewComponent } from './monitor-view/monitor-view.component'
 import { SingleMonitorComponent } from './single-monitor/single-monitor.component';
 import { NotFoundComponent } from './not-found/not-found.component'
 import { AuthGuardService } from './services/auth-guard.service';
+import { CreateMonitorComponent } from './create-monitor/create-monitor.component';
 
 @NgModule({
     declarations: [
@@ -19,7 +20,8 @@ import { AuthGuardService } from './services/auth-guard.service';
         AuthComponent,
         MonitorViewComponent,
         SingleMonitorComponent,
-        NotFoundComponent
+        NotFoundComponent,
+        CreateMonitorComponent
     ],
     imports: [
         BrowserModule,

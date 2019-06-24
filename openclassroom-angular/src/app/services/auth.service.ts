@@ -8,7 +8,7 @@ export class AuthService {
 
     constructor() { }
 
-    isAuth = false
+    isAuth = true
 
     signIn = () => {
         return new Promise((resolve, reject) => {
