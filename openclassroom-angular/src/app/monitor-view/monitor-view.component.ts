@@ -41,6 +41,10 @@ export class MonitorViewComponent implements OnInit, OnDestroy {
         }
     }
 
+    onSave = () => this.monitorService.saveMonitorsToServer()
+
+    onFetch = () => this.monitorService.getMonitorsFromServer()
+
     ngOnDestroy(): void {
         this.monitorsSubscription.unsubscribe()
     }

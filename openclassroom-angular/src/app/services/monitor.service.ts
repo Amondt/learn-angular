@@ -1,6 +1,11 @@
 import { Subject } from 'rxjs/Subject'
+import { Injectable } from '@angular/core'
+import { HttpClient } from '@angular/common/http'
 
+@Injectable()
 export class MonitorService {
+
+    constructor (private httpClient: HttpClient) {}
 
     monitorSubject = new Subject<any[]>()
 
@@ -49,5 +54,23 @@ export class MonitorService {
         })
         console.log(this.monitors)
         this.emitMonitorSubject()
+    }
+
+    saveMonitorsToServer = () => {
+        this.httpClient.put('https://openclassroom-monitor-list.firebaseio.com/monitors.json', this.monitors).subscribe(
+            () => console.log('Monitors saved on the server'),
+            err => console.log(err)
+        )
+    }
+
+    getMonitorsFromServer = () => {
+        this.httpClient.get<any[]>('https://openclassroom-monitor-list.firebaseio.com/monitors.json').subscribe(
+            res => {
+                console.log('Monitors retrieved from the server')
+                this.monitors = res
+                this.emitMonitorSubject()
+            },
+            err => console.log(err)
+        )
     }
 }
