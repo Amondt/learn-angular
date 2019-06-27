@@ -4,7 +4,7 @@
 
         <form [formGroup]="bookForm" (ngSubmit)="onSaveBook()">
             <div class="form-group">
-                <label for="title">Title</label>
+                <label for="title">Title *</label>
                 <input 
                     type="text"
                     id="title"
@@ -13,7 +13,7 @@
             </div>
 
             <div class="form-group">
-                <label for="author">Author</label>
+                <label for="author">Author *</label>
                 <input 
                     type="text"
                     id="author"
@@ -22,7 +22,7 @@
             </div>
 
             <div class="form-group">
-                <label for="synopsis">Synopsis</label>
+                <label for="synopsis">Synopsis *</label>
                 <textarea 
                     id="synopsis"
                     class="form-control"
@@ -30,9 +30,21 @@
                 </textarea>
             </div>
 
+            <div class="form-group">
+                <label>Add an image (opt)</label>
+    
+                <input 
+                    type="file"
+                    (change)="detectFiles($event)"
+                    class="form-control"
+                    accept="image/*">
+    
+                <p class="text-success" *ngIf="fileUploaded">File uploaded</p>
+            </div>
+
             <button 
                 class="btn btn-success"
-                [disabled]="bookForm.invalid"
+                [disabled]="bookForm.invalid || fileIsUploading"
                 type="submit">Save
             </button>
         </form>

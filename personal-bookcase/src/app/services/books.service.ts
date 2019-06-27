@@ -39,9 +39,31 @@ export class BooksService {
     }
 
     deleteBook = (book: Book) => {
+        if (book.imageUrl) {
+            const storageRef = firebase.storage().refFromURL(book.imageUrl)
+            storageRef.delete().then(
+                () => console.log('image removed'),
+                err => console.log(err)
+            )
+        }
         this.books = this.books.filter(currentBook => currentBook !== book)
         this.saveBooks()
         this.emitBooks()
     }
 
+    uploadImage = (file: File) => {
+        return new Promise((resolve, reject) => {
+            const fileNameDate = Date.now().toString()
+            const firebaseImgRef = firebase.storage().ref().child('images/' + fileNameDate + file.name)
+            const upload = firebaseImgRef.put(file)
+            upload.on('state_changed',
+                () => console.log('Loading'),
+                err => {
+                    console.log(err)
+                    reject()
+                },
+                () => resolve(firebaseImgRef.getDownloadURL())
+            )
+        })
+    }
 }
