@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import { PostsService } from './posts.service'
-import { Subscription } from 'rxjs';
+import * as firebase from 'firebase'
 
 @Component({
     selector: 'app-root',
@@ -9,19 +8,22 @@ import { Subscription } from 'rxjs';
 })
 
 export class AppComponent implements OnInit {
-    
-    posts: any[]
-    postSubscription: Subscription
 
     constructor(
-        private postsService: PostsService, 
-    ) { }
+    ) {
+        var firebaseConfig = {
+            apiKey: "AIzaSyDcgtNUq75wIyEDj2-GuFVjN_9DlAO_AVM",
+            authDomain: "openclassroom-blog-704c2.firebaseapp.com",
+            databaseURL: "https://openclassroom-blog-704c2.firebaseio.com",
+            projectId: "openclassroom-blog-704c2",
+            storageBucket: "openclassroom-blog-704c2.appspot.com",
+            messagingSenderId: "1017708455775",
+            appId: "1:1017708455775:web:f5a078cf1f8968f5"
+        }
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig)
+    }
 
     ngOnInit() {
-        this.postSubscription = this.postsService.postSubject.subscribe(
-            (posts: any[]) => this.posts = posts
-        )
-        this.postsService.emitPostSubject()
-        // this.posts = this.postsService.posts
     }
 }

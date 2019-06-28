@@ -13,9 +13,7 @@ export class PostComponent implements OnInit {
 
     constructor(private postsService: PostsService) { }
 
-    ngOnInit() {
-        console.log('init post component -- ', this.postsService)
-    }
+    ngOnInit() {}
 
     balanceLikes = (balance) => this.postsService.balanceLikes(this.post.id, balance)
 

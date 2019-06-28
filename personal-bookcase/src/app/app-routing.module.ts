@@ -17,7 +17,7 @@ const routes: Routes = [
     { path: 'books/add', canActivate: [AuthGuardService], component: BookFormComponent },
     { path: 'books/:id', canActivate: [AuthGuardService], component: BookSingleComponent },
     { path: '**', redirectTo: 'books' },
-];
+]
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
